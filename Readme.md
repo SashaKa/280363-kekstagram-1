@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Sasha Katushkova](https://up.htmlacademy.ru/javascript/14/user/280363).
-* Наставник: `Неизвестно`.
+* Наставник: `Таинственный Лерун`.
 
 ---
 
