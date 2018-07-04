@@ -46,7 +46,7 @@
         onError('Ой, похоже на ошибку соединения');
       });
       xhr.addEventListener('timeout', function () {
-        onError('Запрос опять не успел за ' + (xhr.timeout / 1000) + 'секунд');
+        onError('Запрос не успел за ' + (xhr.timeout / 1000) + 'секунд');
       });
 
       xhr.timeout = 5000;
