@@ -30,7 +30,8 @@
   window.uploadPicture.addEventListener('change', openPictureEditorHandler);
   pictureEditorClose.addEventListener('click', closePictureEditorHandler);
 
-  // Изменение размера изображения
+  // Resize image
+  
   var sizeMinus = pictureEditor.querySelector('.resize__control--minus');
   var sizePlus = pictureEditor.querySelector('.resize__control--plus');
   var uploadPreview = pictureEditor.querySelector('.img-upload__preview');
@@ -55,7 +56,8 @@
   sizeMinus.addEventListener('click', sizeMinusHandler);
   sizePlus.addEventListener('click', sizePlusHandler);
 
-  // Наложение эффекта на изображение
+  // Apply effect to image
+  
   var pictureEffectsContainer = pictureEditor.querySelector('.img-upload__effects');
 
   var pictureFilterHandler = function (evt) {
@@ -73,7 +75,8 @@
 
   pictureEffectsContainer.addEventListener('click', pictureFilterHandler);
 
-  // Определение глубины эффекта
+  // Depth effect
+  
   var SCALE_WIDTH = 453;
   var effectsScale = pictureEditor.querySelector('.img-upload__scale');
   var scalePin = pictureEditor.querySelector('.scale__pin');
@@ -86,8 +89,8 @@
     scalePin.style.left = SCALE_WIDTH + 'px';
     scaleLevel.style.width = SCALE_WIDTH + 'px';
   };
-
-  // Определение глубины эффекта
+ 
+  
   var getScaleProportions = function (input) {
     var scaleProportions = {
       'effects__preview--none': '',
@@ -106,7 +109,8 @@
     previewImage.style.filter = result[currentFilter];
   };
 
-  // Перемещение пина
+  // Pins movement
+  
   var pinMouseDownHandler = function (evt) {
     evt.preventDefault();
     var startX = evt.clientX;
@@ -124,6 +128,7 @@
       scaleLevel.style.width = scalePinLeft + 'px';
 
       // Apply effect here
+      
       scaleValue.value = parseFloat(scalePin.style.left);
       applyFilterDepth();
     };
@@ -140,12 +145,14 @@
 
   scalePin.addEventListener('mousedown', pinMouseDownHandler);
 
-  // Валидация
+  // Validation
+  
   var hashtagInput = pictureEditor.querySelector('.text__hashtags');
   var commentInput = pictureEditor.querySelector('.text__description');
   var postForm = document.querySelector('.img-upload__form');
 
-  // Валидация комментов
+  // Validation of elements
+  
   commentInput.addEventListener('invalid', function () {
     if (commentInput.validity.tooLong) {
       commentInput.setCustomValidity('Максимальное число знаков 140');
@@ -154,7 +161,8 @@
     }
   });
 
-  // Валидация хэштегов
+  // Validation of Hashtags
+  
   var validateHashtags = function () {
     var hashtagsArr = hashtagInput.value.split(' ');
     for (var i = 0; i < hashtagsArr.length; i++) {
@@ -181,7 +189,7 @@
       hashtagInput.style.outline = '2px solid red';
     }
   };
-
+  
   var successHandler = function () {
     window.utils.addHidden(pictureEditor);
     window.uploadPicture.innerHtml = '';
