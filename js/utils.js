@@ -20,10 +20,11 @@
     },
     createErrorMessage: function (errorMessage) {
       var node = document.createElement('div');
-      node.style = 'z-index: 10; margin: 2% auto; text-align: center; background-color: tomato;';
+      node.style = 'z-index: 10; margin: 2% auto; padding: 3%; text-align: center; background-color: tomato;';
       node.style.position = 'absolute';
       node.style.left = 0;
       node.style.right = 0;
+      node.style.height = '10%';
       node.style.fontSize = '24px';
       node.textContent = errorMessage;
       document.body.insertAdjacentElement('afterbegin', node);

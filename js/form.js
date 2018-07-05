@@ -31,7 +31,7 @@
   pictureEditorClose.addEventListener('click', closePictureEditorHandler);
 
   // Resize image
-  
+
   var sizeMinus = pictureEditor.querySelector('.resize__control--minus');
   var sizePlus = pictureEditor.querySelector('.resize__control--plus');
   var uploadPreview = pictureEditor.querySelector('.img-upload__preview');
@@ -57,7 +57,7 @@
   sizePlus.addEventListener('click', sizePlusHandler);
 
   // Apply effect to image
-  
+
   var pictureEffectsContainer = pictureEditor.querySelector('.img-upload__effects');
 
   var pictureFilterHandler = function (evt) {
@@ -75,8 +75,8 @@
 
   pictureEffectsContainer.addEventListener('click', pictureFilterHandler);
 
-  // Depth effect
-  
+  // Apply Depth effect
+
   var SCALE_WIDTH = 453;
   var effectsScale = pictureEditor.querySelector('.img-upload__scale');
   var scalePin = pictureEditor.querySelector('.scale__pin');
@@ -89,8 +89,8 @@
     scalePin.style.left = SCALE_WIDTH + 'px';
     scaleLevel.style.width = SCALE_WIDTH + 'px';
   };
- 
-  
+
+
   var getScaleProportions = function (input) {
     var scaleProportions = {
       'effects__preview--none': '',
@@ -110,7 +110,7 @@
   };
 
   // Pins movement
-  
+
   var pinMouseDownHandler = function (evt) {
     evt.preventDefault();
     var startX = evt.clientX;
@@ -128,7 +128,7 @@
       scaleLevel.style.width = scalePinLeft + 'px';
 
       // Apply effect here
-      
+
       scaleValue.value = parseFloat(scalePin.style.left);
       applyFilterDepth();
     };
@@ -145,42 +145,36 @@
 
   scalePin.addEventListener('mousedown', pinMouseDownHandler);
 
-  // Validation
-  
+  // Validation for comment input TO DO
+
   var hashtagInput = pictureEditor.querySelector('.text__hashtags');
   var commentInput = pictureEditor.querySelector('.text__description');
   var postForm = document.querySelector('.img-upload__form');
 
-  // Validation of elements
-  
   commentInput.addEventListener('invalid', function () {
     if (commentInput.validity.tooLong) {
       commentInput.setCustomValidity('Максимальное число знаков 140');
-    } else {
-      commentInput.setCustomValidity('');
     }
   });
 
-  // Validation of Hashtags
-  
+  // Validation for Hashtags
+
   var validateHashtags = function () {
     var hashtagsArr = hashtagInput.value.split(' ');
     for (var i = 0; i < hashtagsArr.length; i++) {
       if (hashtagsArr[i].charAt(0) !== '#') {
-        hashtagInput.setCustomValidity('Хэштег должен начинаться с символа #');
+        hashtagInput.setCustomValidity('Начните с символа #');
       } else if (hashtagsArr[i].length === 1) {
-        hashtagInput.setCustomValidity('Хэштег не может быть пустым');
+        hashtagInput.setCustomValidity('Нужно написать ещё что-то, кроме решётки!');
       } else if (hashtagsArr[i].length > 20) {
-        hashtagInput.setCustomValidity('Длина хэштега не должна превышать 20 символов');
+        hashtagInput.setCustomValidity('Слишком длинный хештег!');
       } else if (hashtagsArr.length > 5) {
-        hashtagInput.setCustomValidity('Нельзя использовать более 5 хэштегов');
-      } else {
-        hashtagInput.setCustomValidity('');
+        hashtagInput.setCustomValidity('Многовато хештегов...');
       }
       for (var j = 0; j < hashtagsArr.length - 1; j++) {
         for (var k = j + 1; k < hashtagsArr.length; k++) {
           if (hashtagsArr[j].toLowerCase() === hashtagsArr[k].toLowerCase()) {
-            hashtagInput.setCustomValidity('Нельзя использовать один хэштег несколько раз');
+            hashtagInput.setCustomValidity('Этот уже был!');
           }
         }
       }
@@ -189,7 +183,7 @@
       hashtagInput.style.outline = '2px solid red';
     }
   };
-  
+
   var successHandler = function () {
     window.utils.addHidden(pictureEditor);
     window.uploadPicture.innerHtml = '';
